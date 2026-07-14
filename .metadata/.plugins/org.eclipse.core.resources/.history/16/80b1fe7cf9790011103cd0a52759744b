@@ -1,0 +1,40 @@
+package com.profiles.service;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.springframework.stereotype.Service;
+
+import com.profiles.Mapper.TicketEntityMapper;
+import com.profiles.entity.TicketEntity;
+import com.profiles.repository.BookingRepository;
+import com.profiles.request.BookingRequest;
+
+@Service
+public class BookingService {
+	
+	private final BookingRepository bookingRepository;
+	private final TicketEntityMapper ticketEntityMapper;
+	
+	public BookingService(BookingRepository bookingRepository, 
+			TicketEntityMapper ticketEntityMapper) {
+		this.bookingRepository = bookingRepository;
+		this.ticketEntityMapper = ticketEntityMapper;
+	}
+	
+	public void bookTicket(BookingRequest req) {
+		TicketEntity tt =ticketEntityMapper.BookingReqToTicketEntityMapper(req);
+		tt.setPnr(getPnr());
+		
+		TicketEntity savedEntity = bookingRepository.save(tt);
+		System.out.println("saveEnt is ": savedEntity.toString());
+		
+		
+	}
+	
+	public Integer getPnr() {
+		return ThreadLocalRandom.current().nextInt(10000, 100000);
+	}
+	
+	
+	
+}

@@ -1,0 +1,22 @@
+package com.profiles.service;
+
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+
+import com.profiles.repository.ProfileRepository;
+
+@Service
+public class ProfileService {
+	
+	final ProfileRepository profileRepository;
+	final Environment env;
+	
+	public ProfileService(ProfileRepository profileRepository, Environment env) {
+		this.profileRepository = profileRepository;
+		this.env = env;
+	}
+	
+	public void saveProfile() {
+		
+	}
+}

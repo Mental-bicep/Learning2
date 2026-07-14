@@ -1,0 +1,18 @@
+package com.profiles.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.profiles.response.ErrorResponse;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(InsufficientBalanceException.class)
+	public ResponseEntity<?> handleInsufficientBalanceException(InsufficientBalanceException e){
+		ErrorResponse err = new ErrorResponse();
+		err.setErrorCode("IB-101");
+		err.setErrorMsg("Insufficient Balance - Ticket cannot be booked");
+	}
+}

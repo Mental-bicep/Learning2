@@ -1,0 +1,65 @@
+package com.JDBCDemo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{	
+	public void getAllPayments() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String username = "root";
+		String password = "root";
+		String connString = "jdbc:mysql://localhost:3306/kodewala";
+		
+		Connection conn = DriverManager.getConnection(connString, username, password);
+		
+		Statement st = conn.createStatement();
+		String sqlQuery = "select * from products1";
+		
+		ResultSet rs = st.executeQuery(sqlQuery);
+		
+		while(rs.next()) {
+			int productId = rs.getInt(1);
+			String description = rs.getString(2);
+			String name = rs.getString(3);
+			String price = rs.getString(4);
+			String quantity = rs.getString(5);
+			Integer categoryId = rs.getInt(6);
+			System.out.println(productId +"->"+name+"->"+price+"->"+quantity+"->"+categoryId);
+			
+		}
+		
+	}
+	
+	public void update(String setField,Integer setFieldVal, String whereField, Integer whereFieldVal) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String username = "root";
+		String password = "root";
+		String connString = "jdbc:mysql://localhost:3306/kodewala";
+		
+		Connection conn = DriverManager.getConnection(connString,username,password);
+		
+		Statement st = conn.createStatement();
+		String sqlQuery = "update products1 set "+setField+"="+setFieldVal+ " where "+whereField+"= "+whereFieldVal;
+		System.out.println("sql query is "+sqlQuery);
+		
+		int rowsUpdated = st.executeUpdate(sqlQuery);
+		
+		System.out.println("rows updated = "+rowsUpdated);
+	}
+    
+	public static void main( String[] args ) throws ClassNotFoundException, SQLException
+    {
+    	App app = new App();
+    	app.getAllPayments();
+    	app.update("price", "productId", 1);
+    }
+}

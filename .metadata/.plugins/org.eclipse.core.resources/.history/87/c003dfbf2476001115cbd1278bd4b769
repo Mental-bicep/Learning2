@@ -1,0 +1,28 @@
+package com.amazon.service;
+
+import org.springframework.stereotype.Service;
+
+import com.amazon.entity.OtpEntity;
+
+@Service
+public class OtpService {
+	
+	public void saveOtp(String name, String mobile) {
+		
+		int otp = generateOtp();
+		
+		OtpEntity ent = new OtpEntity();;
+		ent.setMobile(mobile);
+		ent.setName(name);
+		ent.setStatus("Active");
+		
+	}
+	
+	private int generateOtp() {
+		SecureRandom random = new SecureRandom();
+		int otp = 100000 + random.nextInt(900000); // Generates 100000 to 999999
+		System.out.println(" Generated OTP :::: " + otp);
+		return otp;
+	}
+	
+}

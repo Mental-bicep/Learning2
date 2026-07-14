@@ -1,0 +1,5 @@
+package com.profiles.repository;
+
+public interface ProfileRepository {
+
+}

@@ -1,0 +1,16 @@
+package com.JDBCTransactions;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class JDBCTxns {
+	
+	public void placeOrder() throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.driver");
+		String user = "root";
+		String pass = "root";
+		String url = "jdbc:mysql://localhost:3306/kodewala";
+		Connection conn = DriverManager.getConnection(pass, user, pass);
+	}
+	
+}

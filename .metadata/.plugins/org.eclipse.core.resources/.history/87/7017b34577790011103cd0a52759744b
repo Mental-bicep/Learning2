@@ -1,0 +1,8 @@
+package com.profiles.service;
+
+public class ProdGreetService implements GreetService{
+	@Override
+	public String greet() {
+		return "welcome to Prod Env";
+	}
+}

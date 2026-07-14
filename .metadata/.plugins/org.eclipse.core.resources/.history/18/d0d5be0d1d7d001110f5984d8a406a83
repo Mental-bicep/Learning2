@@ -1,0 +1,82 @@
+package com.junit;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.Duration;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
+@TestInstance(Lifecycle.PER_CLASS)
+public class MultiplyTest {
+	
+	private Multiply mul ;
+	
+	@BeforeAll
+	public void before() {
+		mul = new Multiply();
+		System.out.println("About to start the Execution");
+	}
+	
+	@BeforeEach
+	public void beforeEach() {
+		System.out.println("Starting the testCase");
+	}
+	
+	@AfterEach
+	public void afterEach() {
+		System.out.println("Testcase completed");
+	}
+	
+	@AfterAll
+	public void afterAll() {
+		System.out.println("Completed the execution");
+		mul = null;
+	}
+	
+	
+	@Test
+	public void mulTest1() {
+		int a = 5, b=8;
+		int exp = 40;
+		int actual = mul.calc(a, b);
+		
+		assertEquals(exp, actual);
+	}
+	
+	@Test
+	public void mulTest2() {
+		int a=0, b=10;
+		int exp = 0;
+		int actual = mul.calc(a, b);
+		assertEquals(exp, actual);
+	}
+	
+	@Test
+	public void testExceptionScenario() {
+		
+		IllegalArgumentException exc = assertThrows(IllegalArgumentException.class, ()->{
+			throw new IllegalArgumentException("for testing purpose -ve numbers are not allowed");
+		});
+		
+		assertEquals("for testing purpose -ve numbers are not allowed", exc.getMessage());
+		
+	}
+	
+	@Test
+	public void testTimeoutScenario() {
+		
+		assertTimeout(Duration.ofMillis(200), ()->{
+			int act = mul.calc(5, 10);
+			assertEquals(50, act);
+		});
+		
+	}
+	
+}

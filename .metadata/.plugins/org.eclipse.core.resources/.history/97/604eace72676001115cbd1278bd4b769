@@ -1,0 +1,5 @@
+package com.amazon.request;
+
+public class OtpResponse {
+
+}

@@ -1,0 +1,18 @@
+package com.profiles.request;
+
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class BookingRequest {
+	private String from;
+	private String to;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
+	
+	private String passengerName;
+	private String gender;
+	private Integer age;
+	
+}

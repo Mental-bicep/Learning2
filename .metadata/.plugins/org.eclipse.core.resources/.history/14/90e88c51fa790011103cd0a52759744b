@@ -1,0 +1,8 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+//		return ThreadLocalRandom.current().nextInt(10000, 100000);
+	}
+}
+

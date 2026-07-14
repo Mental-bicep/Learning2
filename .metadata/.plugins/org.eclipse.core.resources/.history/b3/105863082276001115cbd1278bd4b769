@@ -1,0 +1,10 @@
+package com.amazon.request;
+
+public class OtpEntity {
+	private int id;
+	private String name;
+	private String mobile;
+	private String status;
+	private int otp;
+	
+}

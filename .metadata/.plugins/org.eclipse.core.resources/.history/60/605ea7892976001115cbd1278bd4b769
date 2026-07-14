@@ -1,0 +1,6 @@
+package com.amazon.request;
+
+public class VerifyOtpRequest {
+	String mobile;
+	int otp;
+}

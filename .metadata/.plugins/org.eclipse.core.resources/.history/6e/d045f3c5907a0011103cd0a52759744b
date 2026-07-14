@@ -1,0 +1,12 @@
+package com.junit.JunitCodeCoverageDemo;
+
+import org.junit.jupiter.api.Test;
+
+public class IrctcTicketBookingSystemTest {
+	
+	@Test
+	public void invalidAgeTest1() {
+		Ticket tt = new Ticket("demo", 500, "active");
+	}
+	
+}

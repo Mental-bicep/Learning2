@@ -1,0 +1,10 @@
+package com.zepto.entity;
+
+public class ProductEntity {
+	
+	private Integer productId;
+	private String productName;
+	private Integer quantity;
+	private Float price;
+	
+}

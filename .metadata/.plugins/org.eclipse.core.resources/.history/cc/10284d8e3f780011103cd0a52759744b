@@ -1,0 +1,9 @@
+package com.zepto.entity;
+
+public class CategoryEntity {
+	
+	private Integer categoryId;
+	private String categoryName;
+	private String status;
+	
+}

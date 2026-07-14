@@ -1,0 +1,25 @@
+package com.junit.JunitCodeCoverageDemo;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class IrctcTicketBookingSystemTest {
+	
+	@Test
+	public void invalidAgeTest() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		assertThrows(IllegalArgumentException.class, () -> {
+			book.bookTicket("demoPassenger", -2, LocalDate.of(2026, 12, 12), false, LocalTime.of(15, 15));
+		});
+
+	}
+	
+	@Test
+	public void journeyDateValidationTest() {
+		
+	}
+	
+}

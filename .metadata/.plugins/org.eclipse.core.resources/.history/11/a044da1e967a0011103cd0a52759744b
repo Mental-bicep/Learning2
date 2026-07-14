@@ -1,0 +1,58 @@
+package com.junit.JunitCodeCoverageDemo;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class IrctcTicketBookingSystemTest {
+	
+	@Test
+	public void invalidAgeTest() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		IllegalArgumentException exc = assertThrows(IllegalArgumentException.class, () -> {
+			book.bookTicket("demoPassenger", -2, LocalDate.of(2026, 12, 12), false, LocalTime.of(15, 15),
+					LocalDate.of(2026, 7, 8));
+		});
+		
+		assertEquals("Invalid passenger age provided", exc.getMessage());
+	}
+	
+	@Test
+	public void journeyDateValidationTest() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		IllegalArgumentException exc = assertThrows(IllegalArgumentException.class, () -> {
+			book.bookTicket("demoPassenger", 25, LocalDate.of(2025, 12, 12), false, LocalTime.of(15, 15),LocalDate.of(2026, 7, 8));
+		});
+		assertEquals("Journey date cannot be in the past", exc.getMessage());
+	}
+	
+	@Test
+	public void insufficientBalanceTest() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(200);
+		IllegalStateException exc = assertThrows(IllegalStateException.class, () -> {
+			book.bookTicket("demoPassenger", 25, LocalDate.of(2026, 12, 12), false, LocalTime.of(15, 15),LocalDate.of(2026, 7, 8));
+		});
+		assertEquals("Insufficient wallet balance! Required: " + book.calculateFare(25,LocalDate.of(2026, 12, 12) , false, LocalDate.of(2026, 7, 8)), exc.getMessage());
+	}
+	
+	@Test
+	public void tatkalValidationTest1() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		IllegalArgumentException exc = assertThrows(IllegalArgumentException.class, () -> {
+			book.bookTicket("demoPassenger", 25, LocalDate.of(2026, 7, 9), true, LocalTime.of(15, 15),LocalDate.of(2026, 7, 8));
+		});
+		assertEquals("Journey date cannot be in the past", exc.getMessage());
+	}
+	
+	@Test
+	public void tatkalValidationTest2() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		IllegalArgumentException exc = assertThrows(IllegalArgumentException.class, () -> {
+			book.bookTicket("demoPassenger", 25, LocalDate.of(2026, 7, 12), true, LocalTime.of(15, 15),LocalDate.of(2026, 7, 8));
+		});
+		assertEquals("Journey date cannot be in the past", exc.getMessage());
+	}
+	
+}

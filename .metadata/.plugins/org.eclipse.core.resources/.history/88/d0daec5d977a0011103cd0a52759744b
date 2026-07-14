@@ -1,0 +1,152 @@
+package com.junit.JunitCodeCoverageDemo;
+
+//import java.time.LocalDate;
+//import java.time.LocalTime;
+//
+//public class IrctcTicketBookingSystem {
+//
+//    private double walletBalance;
+//    private final double BASE_FARE = 500.0;
+//
+//    public IrctcTicketBookingSystem(double initialBalance) {
+//        this.walletBalance = initialBalance;
+//    }
+//
+//    /**
+//     * Business Rules to Test:
+//     * 1. If age is invalid (<= 0 or > 120), throw IllegalArgumentException.
+//     * 2. If travelDate is in the past, throw IllegalArgumentException.
+//     * 3. Senior Citizens (age >= 60) get a flat 50% discount on base fare.
+//     * 4. Children (age <= 5) get a flat 100% discount (Free ticket!).
+//     * 5. If booking is TATKAL (journey date is tomorrow):
+//     * - A flat surcharge of 150.0 is added to the fare.
+//     * - If booked between 11:00 AM and 11:05 AM, simulate high server traffic delay (Timeout Test!).
+//     * 6. If wallet balance is less than final fare, throw IllegalStateException.
+//     */
+//    public Ticket bookTicket(String passengerName, int age, LocalDate journeyDate, boolean isTatkal, LocalTime bookingTime) {
+//        
+//        // Rule 1: Validation
+//        if (age <= 0 || age > 120) {
+//            throw new IllegalArgumentException("Invalid passenger age provided");
+//        }
+//        
+//        // Rule 2: Date Validation
+//        if (journeyDate.isBefore(LocalDate.now())) {
+//            throw new IllegalArgumentException("Journey date cannot be in the past");
+//        }
+//
+//        double finalFare = BASE_FARE;
+//
+//        // Rule 3 & 4: Age Discounts
+//        if (age >= 60) {
+//            finalFare = BASE_FARE * 0.5; // 50% off
+//        } else if (age <= 5) {
+//            finalFare = 0.0; // Free for kids
+//        }
+//
+//        // Rule 5: Tatkal Rules
+//        if (isTatkal) {
+//            if (!journeyDate.equals(LocalDate.now().plusDays(1))) {
+//                throw new IllegalArgumentException("Tatkal tickets can only be booked for tomorrow's date");
+//            }
+//            finalFare += 150.0; // Surcharge
+//
+//            // Simulate server heavy load condition for Tatkal opening time window (11:00 AM - 11:05 AM)
+//            if (bookingTime.isAfter(LocalTime.of(10, 59, 59)) && bookingTime.isBefore(LocalTime.of(11, 06, 0))) {
+//                try {
+//                    Thread.sleep(150); // Intentionally delaying execution to practice Timeout tests
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt();
+//                }
+//            }
+//        }
+//
+//        // Rule 6: Wallet Check
+//        if (this.walletBalance < finalFare) {
+//            throw new IllegalStateException("Insufficient wallet balance! Required: " + finalFare);
+//        }
+//
+//        // Deduct balance and return ticket
+//        this.walletBalance -= finalFare;
+//        return new Ticket(passengerName, finalFare, "CONFIRMED");
+//    }
+//
+//    public double getWalletBalance() {
+//        return this.walletBalance;
+//    }
+//}
+
+
+/**
+* Business Rules to Test:
+* 1. If age is invalid (<= 0 or > 120), throw IllegalArgumentException.
+* 2. If travelDate is in the past, throw IllegalArgumentException.
+* 3. Senior Citizens (age >= 60) get a flat 50% discount on base fare.
+* 4. Children (age <= 5) get a flat 100% discount (Free ticket!).
+* 5. If booking is TATKAL (journey date is tomorrow):
+* - A flat surcharge of 150.0 is added to the fare.
+* - If booked between 11:00 AM and 11:05 AM, simulate high server traffic delay (Timeout Test!).
+* 6. If wallet balance is less than final fare, throw IllegalStateException.
+*/
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class IrctcTicketBookingSystem {
+
+    private double walletBalance;
+    public static final double BASE_FARE = 500.0; // Made public static for easy access in tests
+
+    public IrctcTicketBookingSystem(double initialBalance) {
+        this.walletBalance = initialBalance;
+    }
+
+    // NEW METHOD: Expose the calculation logic directly for testing!
+    public double calculateFare(int age, LocalDate journeyDate, boolean isTatkal, LocalDate currentDate) {
+        double finalFare = BASE_FARE;
+
+        if (age >= 60) {
+            finalFare = BASE_FARE * 0.5; 
+        } else if (age <= 5) {
+            finalFare = 0.0; 
+        }
+
+        if (isTatkal) {
+            if (!journeyDate.equals(currentDate.plusDays(1))) {
+                throw new IllegalArgumentException("Tatkal tickets can only be booked for tomorrow's date");
+            }
+            finalFare += 150.0; 
+        }
+
+        return finalFare;
+    }
+
+    public Ticket bookTicket(String passengerName, int age, LocalDate journeyDate, 
+                             boolean isTatkal, LocalTime bookingTime, LocalDate currentDate) {
+        
+        if (age <= 0 || age > 120) {
+            throw new IllegalArgumentException("Invalid passenger age provided");
+        }
+        if (journeyDate.isBefore(currentDate)) {
+            throw new IllegalArgumentException("Journey date cannot be in the past");
+        }
+
+        // Call the calculation method
+        double finalFare = calculateFare(age, journeyDate, isTatkal, currentDate);
+
+        // Simulate server delay for Tatkal window
+        if (isTatkal && bookingTime.isAfter(LocalTime.of(10, 59, 59)) && bookingTime.isBefore(LocalTime.of(11, 06, 0))) {
+            try { Thread.sleep(150); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        }
+
+        // Rule 6: Wallet Check
+        if (this.walletBalance < finalFare) {
+            throw new IllegalStateException("Insufficient wallet balance! Required: " + finalFare);
+        }
+
+        this.walletBalance -= finalFare;
+        return new Ticket(passengerName, finalFare, "CONFIRMED");
+    }
+
+    public double getWalletBalance() { return this.walletBalance; }
+}

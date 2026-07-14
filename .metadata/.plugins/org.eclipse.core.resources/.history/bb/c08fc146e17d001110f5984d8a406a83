@@ -1,0 +1,76 @@
+package com.zepto.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="categories4")
+public class CategoryEntity{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long categoryId;
+	String categoryName;
+	String status;
+	
+	@OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY ) //fetch = FetchType.EAGER
+	List<ProductEntity> productEntities = new ArrayList<ProductEntity>();
+
+	
+	Long categoryId;
+	String categoryName;
+	String status;
+	
+	@OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	List<ProductEntity> productEntites = new ArrayList<>();
+	
+	
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<ProductEntity> getProductEntities() {
+		return productEntities;
+	}
+
+	public void setProductEntities(List<ProductEntity> productEntities) {
+		this.productEntities = productEntities;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoryEntity [categoryName=" + categoryName + ", status=" + status + ", productEntities="
+				+ productEntities + "]";
+	}
+	
+	
+}

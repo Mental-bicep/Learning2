@@ -1,0 +1,33 @@
+package com.zepto.service;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.zepto.dto.SavedProductResponseDto;
+import com.zepto.entity.CategoryEntity;
+import com.zepto.repository.CategoryRepository;
+import com.zepto.repository.ProductRepository;
+import com.zepto.request.ProductRequest;
+
+@Service
+public class ProductService {
+	
+	final CategoryRepository categoryRepository;
+	final ProductRepository productRepository;
+	
+	public ProductService(CategoryRepository categoryRepository, ProductRepository productRepository) {
+		this.categoryRepository = categoryRepository;
+		this.productRepository = productRepository;
+	}
+	
+	
+	public SavedProductResponseDto saveProduct(ProductRequest req) {
+		
+		Optional<CategoryEntity> catEnt = categoryRepository.findByCategoryName(req.getCategoryName());
+		
+	}
+	
+	
+	
+}

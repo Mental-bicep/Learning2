@@ -1,0 +1,41 @@
+package com.amazon.service;
+
+import java.security.SecureRandom;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.amazon.entity.OtpEntity;
+import com.amazon.repository.OtpRepository;
+
+@Service
+public class OtpService {
+	
+	@Autowired
+	OtpRepository otpRepository;
+	
+	public void saveOtp(String name, String mobile) {
+		
+		int otp = generateOtp();
+		
+		OtpEntity ent = new OtpEntity();;
+		ent.setMobile(mobile);
+		ent.setName(name);
+		ent.setStatus("Active");
+		ent.setOtp(otp);
+		
+		OtpEntity savedEnt = otpRepository.save(ent);
+		
+		if(savedEnt.getId() > 0 ) System.out.println("Otp generated successfully");
+		else System.out.println("Otp could not be genrated");
+		
+	}
+	
+	private int generateOtp() {
+		SecureRandom random = new SecureRandom();
+		int otp = 100000 + random.nextInt(900000); // Generates 100000 to 999999
+		System.out.println(" Generated OTP :::: " + otp);
+		return otp;
+	}
+	
+}

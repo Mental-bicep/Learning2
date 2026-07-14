@@ -1,0 +1,25 @@
+package com.JDBCDemo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{	
+	public void getAllPayments() throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String username = "root";
+		String password = "root";
+		String connString = "jdbc:mysql://localhost:3306/kodewala";
+		
+		Connection conn = DriverManager.getConnection(connString, username, password);
+	}
+    
+	public static void main( String[] args )
+    {
+    	
+    }
+}

@@ -1,0 +1,15 @@
+package com.profiles.service;
+
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
+@Service
+@Profile("prod")
+public class ProdGreetService implements GreetService{
+	@Override
+	public String greet() {
+		return "welcome to Prod Env";
+	}
+}
+
+

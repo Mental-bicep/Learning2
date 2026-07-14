@@ -1,0 +1,38 @@
+package com.profiles.service;
+
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
+import org.springframework.stereotype.Service;
+
+import com.profiles.entity.ProfileEntity;
+import com.profiles.repository.ProfileRepository;
+
+@Service
+public class ProfileService {
+	
+	final ProfileRepository profileRepository;
+	final Environment env;
+	final GreetService greetService;
+	
+	public ProfileService(ProfileRepository profileRepository, Environment env, GreetService greetService) {
+		this.profileRepository = profileRepository;
+		this.env = env;
+		this.greetService = greetService;
+	}
+	
+	
+	
+	public void saveProfile() {
+		ProfileEntity ent = new ProfileEntity();
+		
+		if(env.acceptsProfiles(Profiles.of("dev"))) ent.setDesc(devDesc);
+		else if(env.acceptsProfiles(Profiles.of("preprod"))) ent.setDesc(preProdDesc);
+		else if(env.acceptsProfiles(Profiles.of("prod"))) ent.setDesc(prodDesc);
+		
+		var savedEnt = profileRepository.save(ent);
+		if(savedEnt.getId() > 0) {
+			System.out.println("saved success with id ="+ savedEnt.getId()+" "+savedEnt.getDesc());
+		}
+	}
+}

@@ -1,0 +1,19 @@
+package cf1;
+
+import java.util.concurrent.CompletableFuture;
+
+public class RunAsyncDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Before the function call");
+		CompletableFuture cf = CompletableFuture.runAsync( ()->{
+			System.out.println("Inside the run Async SOP statement");
+		} );
+		
+		System.out.println(cf.join());
+		System.out.println("End of the function call");
+				
+	}
+
+}

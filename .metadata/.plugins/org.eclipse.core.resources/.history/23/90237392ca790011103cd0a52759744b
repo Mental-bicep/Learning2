@@ -1,0 +1,21 @@
+package com.junit;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MultiplyTest {
+	
+	private Multiply mul = new Multiply();
+	
+	@Test
+	public void mulTest1() {
+		int a = 5, b=8;
+		int exp = 40;
+		int actual = mul.calc(a, b);
+		
+		assertEquals(exp, actual);
+	}
+	
+	@Test
+	public void 
+}

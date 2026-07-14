@@ -1,0 +1,17 @@
+package Thread2;
+
+class MyRunnable implements Runnable {
+	
+	@Override
+	public void run() {
+		System.out.println("Inside at the Runnable begining "+ Thread.currentThread().getName());
+	}
+}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stb
+		System.out.println("Hello world");
+		
+	}
+
+}

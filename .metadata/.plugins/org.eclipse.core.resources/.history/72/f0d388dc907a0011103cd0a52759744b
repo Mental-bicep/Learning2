@@ -1,0 +1,15 @@
+package com.junit.JunitCodeCoverageDemo;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class IrctcTicketBookingSystemTest {
+	
+	@Test
+	public void invalidAgeTest1() {
+		IrctcTicketBookingSystem book = new IrctcTicketBookingSystem(1000);
+		assertThrows()
+		book.bookTicket("demoPassenger", 5, "25-05-2027", false, "15:30:24");
+	}
+	
+}

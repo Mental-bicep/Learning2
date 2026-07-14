@@ -1,0 +1,11 @@
+package com.profiles.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.profiles.entity.TicketEntity;
+import java.util.List;
+
+
+public interface BookingRepository extends JpaRepository<TicketEntity, Integer> {
+	List<TicketEntity> findByPnr(Integer pnr);
+}

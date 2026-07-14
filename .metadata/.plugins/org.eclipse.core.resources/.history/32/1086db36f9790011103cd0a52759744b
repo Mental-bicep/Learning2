@@ -1,0 +1,39 @@
+package com.profiles.service;
+
+import org.springframework.stereotype.Service;
+
+import com.profiles.Mapper.TicketEntityMapper;
+import com.profiles.entity.TicketEntity;
+import com.profiles.repository.BookingRepository;
+import com.profiles.request.BookingRequest;
+
+@Service
+public class BookingService {
+	
+	private final BookingRepository bookingRepository;
+	private final TicketEntityMapper ticketEntityMapper;
+	
+	public BookingService(BookingRepository bookingRepository, 
+			TicketEntityMapper ticketEntityMapper) {
+		this.bookingRepository = bookingRepository;
+		this.ticketEntityMapper = ticketEntityMapper;
+	}
+	
+	public void bookTicket(BookingRequest req) {
+		
+		
+		
+	}
+	
+	public TicketEntity (BookingRequest req){
+		TicketEntity tt = new TicketEntity();
+		tt.setAge(req.getAge());
+		tt.setFromStation(req.getFrom());
+		tt.setGender(null);
+		tt.setJourneyDate(null);
+		tt.setPassengerName(null);
+		tt.setPnr(null);
+		tt.setToStation(null);
+	}
+	
+}

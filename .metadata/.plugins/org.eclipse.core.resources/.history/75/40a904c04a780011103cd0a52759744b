@@ -1,0 +1,5 @@
+package com.zepto.DTO;
+
+public class SavedProductResponseDto {
+
+}

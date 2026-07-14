@@ -1,0 +1,11 @@
+package com.profiles.Mapper;
+
+import org.mapstruct.Mapper;
+
+import com.profiles.entity.TicketEntity;
+
+@Mapper(componentModel = "spring")
+public class TicketEntityMapper {
+	
+	TicketEntity BookingReqToTicketEntityMapper()
+}
