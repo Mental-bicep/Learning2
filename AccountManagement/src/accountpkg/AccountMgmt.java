@@ -6,7 +6,6 @@ public class AccountMgmt {
 	public static void main(String [] args) {
 		 UserMgmt um = new UserMgmt();
 		 um.getUserInfo("Retail");
-		
-		
+		 System.out.println("let me check if we are having sync or not");
 	}
 }

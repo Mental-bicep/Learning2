@@ -19,7 +19,8 @@ public class App
     	try {
 //			obj.placeOrder();
     		
-    		ps.updateUsingPS("checking", 1);
+//    		ps.updateUsingPS("checking", 1);
+    		ps.batchInsert();
     		
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

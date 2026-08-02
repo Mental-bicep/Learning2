@@ -26,6 +26,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.EcomMpJdbc"/>
 			<item value="com.JDBCDemo"/>
 			<item value="com.junit.JunitCodeCoverageDemo"/>
 			<item value="com.junit"/>
@@ -34,6 +35,7 @@
 			<item value="com.prac2.prac2"/>
 		</list>
 		<list key="groupId">
+			<item value="com.Ecom-mp-jdbc"/>
 			<item value="com.JDBCDemo"/>
 			<item value="com.junit"/>
 			<item value="com.maven"/>
@@ -41,6 +43,7 @@
 			<item value="com.prac2"/>
 		</list>
 		<list key="artifactId">
+			<item value="EcomMpJdbc"/>
 			<item value="JDBCdemo"/>
 			<item value="JunitCodeCoverageDemo"/>
 			<item value="JunitDemo"/>
