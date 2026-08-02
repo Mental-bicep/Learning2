@@ -8,8 +8,9 @@ import jakarta.persistence.Entity;
  */
 @Entity
 public class Employee {
-
-    @EmbeddedId
+	
+		
+	@EmbeddedId
     private EmployeeId id; // This is the composite key
 
     private String name;
