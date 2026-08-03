@@ -1,8 +1,0 @@
-package accountpkg;
-
-public class AccountMgmt {
-	public static void main(String [] args) {
-		UserMgmt
-		
-	}
-}

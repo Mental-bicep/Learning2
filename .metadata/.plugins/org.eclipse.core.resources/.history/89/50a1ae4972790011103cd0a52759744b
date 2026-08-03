@@ -1,8 +1,0 @@
-package com.profiles.service;
-
-public class DevGreetService implements GreetService{
-	@Override
-	public void greet() {
-		System.out.println("Welcome this is DEV Env");
-	}
-}

@@ -1,5 +1,0 @@
-package com.JDBCTransactions;
-
-public class JdbcPreparedStatementDemo {
-
-}

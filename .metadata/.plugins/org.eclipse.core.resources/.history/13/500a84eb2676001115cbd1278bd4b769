@@ -1,7 +1,0 @@
-package com.amazon.request;
-
-public class OtpResponse {
-	int otp;
-	String status;
-	String valid;
-}

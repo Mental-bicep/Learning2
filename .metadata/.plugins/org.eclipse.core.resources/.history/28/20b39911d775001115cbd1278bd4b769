@@ -1,9 +1,0 @@
-package cf2;
-
-public class SupplyAsyncDemo {
-	
-	public static void main(String [] args) {
-		
-	}
-	
-}

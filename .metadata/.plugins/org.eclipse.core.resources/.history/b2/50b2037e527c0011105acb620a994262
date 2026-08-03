@@ -1,5 +1,0 @@
-package com.profiles.exception;
-
-public class InsufficientBalanceException {
-
-}
