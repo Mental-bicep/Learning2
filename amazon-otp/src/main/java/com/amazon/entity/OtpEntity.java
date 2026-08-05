@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "amazon_otp")
 public class OtpEntity {
@@ -14,7 +15,7 @@ public class OtpEntity {
 	private int id;
 	private String name;
 	private String mobile;
-	private String status;
+	private String status; // whether otp is still active or not.. maybe timeout happened and otp is not active new otp req.
 	private int otp;
 	public int getId() {
 		return id;
@@ -46,7 +47,4 @@ public class OtpEntity {
 	public void setOtp(int otp) {
 		this.otp = otp;
 	}
-	
-	
-	
 }

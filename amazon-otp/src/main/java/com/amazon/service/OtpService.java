@@ -13,9 +13,9 @@ import com.amazon.repository.OtpRepository;
 import com.amazon.request.OtpResponse;
 import com.amazon.request.VerifyOtpRequest;
 
+
 @Service
 public class OtpService {
-	
 	
 	final OtpRepository otpRepository;
 

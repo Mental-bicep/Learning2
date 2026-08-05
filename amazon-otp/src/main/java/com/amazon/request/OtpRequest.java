@@ -1,5 +1,6 @@
 package com.amazon.request;
 
+
 public class OtpRequest {
 	String name;
 	String mobile;

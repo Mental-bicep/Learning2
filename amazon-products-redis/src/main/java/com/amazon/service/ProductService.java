@@ -27,6 +27,8 @@ public class ProductService {
     }
 
     // 2. READ: Checks the remote Upstash cloud cache bucket first. On miss, hits local MySQL.
+    // (CahceName, key) -> upstashProductsCache::101 , upstashProductsCache::109 etc
+    // value -> cacheName, key ->key in redis
     @Cacheable(value = "upstashProductsCache", key = "#id")
     public Product findProductById(Long id) {
         System.out.println(">>> [Cache Miss Log]: Key not found in Upstash. Querying local MySQL for ID: " + id);
