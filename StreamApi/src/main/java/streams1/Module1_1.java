@@ -82,8 +82,12 @@ public class Module1_1 {
 //            // 6. Collect to list
 //            .toList();
         
-        sentences.stream().filter(w -> w!=null).flatMap(sen -> sen.chars().mapToObj(c -> (char)c)).
+//        sentences.stream().filter(w -> w!=null).flatMapToInt(sen -> sen.chars()).peek(ch -> System.out.println(ch +" "+ (char)ch)). 
+//        	mapToObj(ch -> (char)ch).toList();
+        
+        return sentences.stream().filter(w -> w!=null).flatMap(sen -> sen.chars().mapToObj(c -> (char)c)).
         	filter(c -> c!=' ').distinct().sorted().toList();
+        
     }
 
     // ==========================================
