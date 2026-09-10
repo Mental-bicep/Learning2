@@ -9,17 +9,17 @@ public class StringMethodsDemo {
         String text = "  Hello Java World!  ";
         String sample = "Hello Java World!";
         
-        // 1. Returns total number of characters -> length()
+        // 1. Returns total number of characters -> length() s1.length()
         System.out.println("1. length(): " + sample.length()); // Output: 17
         
-        // 2. Returns character at specific 0-based index -> charAt(index)
+        // 2. Returns character at specific 0-based index -> charAt(index) s1.charAt()
         System.out.println("2. charAt(1): " + sample.charAt(1)); // Output: 'e'
 
         // String overrides equals and hashCode - so any two strings with same content will produce same hashCode and .equals will give true
-        // 3. Performs exact case-sensitive content comparison -> equals(Object)
+        // 3. Performs exact case-sensitive content comparison -> equals(Object) s1.equals(s2)
         System.out.println("3. equals(): " + "Java".equals("java")); // Output: false
         
-        // 4. Performs case-insensitive content comparison -> equalsIgnoreCase(String)
+        // 4. Performs case-insensitive content comparison -> equalsIgnoreCase(String) s1.equalsIgnoreCase(s2)
         System.out.println("4. equalsIgnoreCase(): " + "Java".equalsIgnoreCase("java")); // Output: true
         System.out.println(text.equalsIgnoreCase(sample));
         

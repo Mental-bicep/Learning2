@@ -6,14 +6,17 @@ public class StringBuilderDemo {
 
         // Initialize a StringBuilder
         StringBuilder sb = new StringBuilder("Hello");
+        
 
         // 1. append(String/primitive) -> Appends data to the end of the buffer
         sb.append(" Java");
+//        sb.append("c");
         System.out.println("1. append(): " + sb); // Output: "Hello Java"
 
         // 2. length() -> Returns total number of characters currently in buffer
         System.out.println("2. length(): " + sb.length()); // Output: 10
-
+        
+        
         // 3. capacity() -> Returns total allocated memory capacity (Default initial = 16 + length)
         System.out.println("3. capacity(): " + sb.capacity()); // Output: 21 (16 + 5)
 
@@ -23,7 +26,8 @@ public class StringBuilderDemo {
         // 5. insert(offset, String) -> Inserts data at specified index position
         sb.insert(5, " World");
         System.out.println("5. insert(): " + sb); // Output: "Hello World Java"
-
+       
+        
         // 6. replace(start, end, String) -> Replaces sequence from start to (end - 1)
         sb.replace(6, 11, "Spring");
         System.out.println("6. replace(): " + sb); // Output: "Hello Spring Java"
@@ -67,5 +71,12 @@ public class StringBuilderDemo {
         // 14. toString() -> Converts the mutable StringBuilder into an immutable String
         String result = sb.toString();
         System.out.println("14. toString(): " + result); // Output: "hello Java"
+        
+        //15 CompareTo == 0 is used to check StirngBuildrs 
+        // or CharSequence.compareTo
+        System.out.println(sb.compareTo(new StringBuilder("hello Java")));
+        
+        // 16. CharSequence.ignoreCase() == 0 // for botht string and stirngbuilder
+//        System.out.println(CharSequence.);
     }
 }
